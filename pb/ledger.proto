@@ -46,7 +46,6 @@ message ConfirmationTransactionData {
   float value = 2;
   google.protobuf.Timestamp local_time = 3;
   string merchant_id = 4;
-  string pos_id = 5;
   string card_id = 6;
 }
 
@@ -55,8 +54,7 @@ message CancellationTransactionData {
   float value = 2;
   google.protobuf.Timestamp local_time = 3;
   string merchant_id = 4;
-  string pos_id = 5;
-  string card_id = 6;
+  string card_id = 5;
 }
 
 message ReversalTransactionData {
@@ -64,7 +62,6 @@ message ReversalTransactionData {
   float value = 2;
   google.protobuf.Timestamp local_time = 3;
   string merchant_id = 4;
-  string pos_id = 5;
   string card_id = 6;
 }
 
