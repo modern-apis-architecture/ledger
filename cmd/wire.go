@@ -1,16 +1,20 @@
+//go:build wireinject
+// +build wireinject
+
 package main
 
 import (
 	"github.com/google/wire"
-	"github.com/modern-apis-architecture/ledger/internal/domain/transaction"
+	"github.com/modern-apis-architecture/ledger/internal/domain/transaction/repository"
+	"github.com/modern-apis-architecture/ledger/internal/domain/transaction/service"
 	"github.com/modern-apis-architecture/ledger/internal/storage/mongo"
 )
 
-func buildAppContainer() (transaction.TransactionService, error) {
+func buildAppContainer() (service.TransactionService, error) {
 	wire.Build(mongo.ProvideCollection,
 		mongo.NewMongoDBRepository,
-		transaction.NewDefaultTransactionService,
-		wire.Bind(new(transaction.TransactionRepository), new(mongo.MongoDBRepository)),
-		wire.Bind(new(transaction.TransactionService), new(transaction.DefaultTransactionService)))
+		service.NewDefaultTransactionService,
+		wire.Bind(new(repository.TransactionRepository), new(*mongo.MongoDBRepository)),
+		wire.Bind(new(service.TransactionService), new(*service.DefaultTransactionService)))
 	return nil, nil
 }

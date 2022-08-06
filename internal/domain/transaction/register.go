@@ -1,5 +1,5 @@
 package transaction
 
-type Register struct {
+type Record struct {
 	Id string
 }
