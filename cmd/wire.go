@@ -4,6 +4,7 @@
 package main
 
 import (
+	"github.com/google/wire"
 	"github.com/modern-apis-architecture/ledger/internal/adapter"
 	"github.com/modern-apis-architecture/ledger/internal/domain/transaction/repository"
 	"github.com/modern-apis-architecture/ledger/internal/domain/transaction/service"
@@ -12,10 +13,9 @@ import (
 
 func buildAppContainer() (*adapter.LedgerServer, error) {
 	wire.Build(mongo.ProvideCollection,
-		mongo.NewMongoDBRepository,
-		service.NewDefaultTransactionService,
-		wire.Bind(new(repository.TransactionRepository), new(*mongo.MongoDBRepository)),
-		wire.Bind(new(service.TransactionService), new(*service.DefaultTransactionService))),
-		adapter.NewLedgerServer
+		mongo.NewMongoTransactionRepository,
+		service.NewTransactionService,
+		wire.Bind(new(repository.TransactionRepository), new(*mongo.MongoTransactionRepository)),
+		adapter.NewLedgerServer)
 	return nil, nil
 }

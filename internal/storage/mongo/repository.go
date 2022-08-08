@@ -4,16 +4,15 @@ import (
 	"context"
 	"fmt"
 	"github.com/modern-apis-architecture/ledger/internal/domain/transaction"
-	"github.com/modern-apis-architecture/ledger/internal/domain/transaction/repository"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type MongoDBRepository struct {
+type MongoTransactionRepository struct {
 	collection *mongo.Collection
 }
 
-func (mr *MongoDBRepository) Register(t *transaction.Transaction) (*transaction.Record, error) {
+func (mr *MongoTransactionRepository) Register(t *transaction.Transaction) (*transaction.Record, error) {
 	ctx := context.Background()
 	opts := options.InsertOne()
 	doc, err := mr.collection.InsertOne(ctx, t, opts)
@@ -26,6 +25,6 @@ func (mr *MongoDBRepository) Register(t *transaction.Transaction) (*transaction.
 
 }
 
-func NewMongoDBRepository(collection *mongo.Collection) repository.TransactionRepository {
-	return &MongoDBRepository{collection: collection}
+func NewMongoTransactionRepository(collection *mongo.Collection) *MongoTransactionRepository {
+	return &MongoTransactionRepository{collection: collection}
 }
