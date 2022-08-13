@@ -13,6 +13,6 @@ type Transaction struct {
 
 type TransactionData struct {
 	ExternalId string  `json:"external_id" bson:"external_id"`
-	Value      float64 `json:"value" bson:"value"`
+	Value      float32 `json:"value" bson:"value"`
 	MerchantId string  `json:"merchant_id" bson:"merchant_id"`
 }
