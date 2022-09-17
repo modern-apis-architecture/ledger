@@ -12,7 +12,10 @@ type Transaction struct {
 }
 
 type TransactionData struct {
-	ExternalId string  `json:"external_id" bson:"external_id"`
-	Value      float32 `json:"value" bson:"value"`
-	MerchantId string  `json:"merchant_id" bson:"merchant_id"`
+	ExternalId        string  `json:"external_id" bson:"external_id"`
+	Value             float32 `json:"value" bson:"value"`
+	MerchantId        string  `json:"merchant_id" bson:"merchant_id"`
+	CurrencyCode      string  `json:"currency_code" bson:"currency_code"`
+	AuthorizationCode string  `json:"authorization_code" bson:"authorization_code"`
+	CountryCode       string  `json:"country_code" bson:"country_code"`
 }

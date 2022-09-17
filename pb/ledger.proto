@@ -47,6 +47,9 @@ message ConfirmationTransactionData {
   google.protobuf.Timestamp local_time = 3;
   string merchant_id = 4;
   string card_id = 6;
+  string currency_code = 7;
+  string authorization_code = 8;
+  string country_code = 9;
 }
 
 message CancellationTransactionData {
@@ -55,6 +58,9 @@ message CancellationTransactionData {
   google.protobuf.Timestamp local_time = 3;
   string merchant_id = 4;
   string card_id = 5;
+  string currency_code = 7;
+  string authorization_code = 8;
+  string country_code = 9;
 }
 
 message ReversalTransactionData {
@@ -63,6 +69,9 @@ message ReversalTransactionData {
   google.protobuf.Timestamp local_time = 3;
   string merchant_id = 4;
   string card_id = 6;
+  string currency_code = 7;
+  string authorization_code = 8;
+  string country_code = 9;
 }
 
 

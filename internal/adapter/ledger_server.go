@@ -28,9 +28,12 @@ func (ls *LedgerServer) Confirmation(ctx context.Context, rc *api.RequestConfirm
 		RegisteredAt: rc.Transaction.LocalTime.AsTime(),
 		CardId:       rc.Transaction.CardId,
 		Data: transaction.TransactionData{
-			ExternalId: rc.Transaction.ExternalId,
-			Value:      rc.Transaction.Value,
-			MerchantId: rc.Transaction.MerchantId,
+			ExternalId:        rc.Transaction.ExternalId,
+			Value:             rc.Transaction.Value,
+			MerchantId:        rc.Transaction.MerchantId,
+			CurrencyCode:      rc.Transaction.CurrencyCode,
+			AuthorizationCode: rc.Transaction.AuthorizationCode,
+			CountryCode:       rc.Transaction.CountryCode,
 		},
 		Type: rc.Type.String(),
 	}
@@ -52,9 +55,12 @@ func (ls *LedgerServer) Cancellation(ctx context.Context, rc *api.RequestCancell
 		RegisteredAt: rc.Transaction.LocalTime.AsTime(),
 		CardId:       rc.Transaction.CardId,
 		Data: transaction.TransactionData{
-			ExternalId: rc.Transaction.ExternalId,
-			Value:      rc.Transaction.Value,
-			MerchantId: rc.Transaction.MerchantId,
+			ExternalId:        rc.Transaction.ExternalId,
+			Value:             rc.Transaction.Value,
+			MerchantId:        rc.Transaction.MerchantId,
+			CurrencyCode:      rc.Transaction.CurrencyCode,
+			AuthorizationCode: rc.Transaction.AuthorizationCode,
+			CountryCode:       rc.Transaction.CountryCode,
 		},
 		Type: rc.Type.String(),
 	}
@@ -76,9 +82,12 @@ func (ls *LedgerServer) Reversal(ctx context.Context, rr *api.RequestReversal) (
 		RegisteredAt: rr.Transaction.LocalTime.AsTime(),
 		CardId:       rr.Transaction.CardId,
 		Data: transaction.TransactionData{
-			ExternalId: rr.Transaction.ExternalId,
-			Value:      rr.Transaction.Value,
-			MerchantId: rr.Transaction.MerchantId,
+			ExternalId:        rr.Transaction.ExternalId,
+			Value:             rr.Transaction.Value,
+			MerchantId:        rr.Transaction.MerchantId,
+			CurrencyCode:      rr.Transaction.CurrencyCode,
+			AuthorizationCode: rr.Transaction.AuthorizationCode,
+			CountryCode:       rr.Transaction.CountryCode,
 		},
 		Type: rr.Type.String(),
 	}
