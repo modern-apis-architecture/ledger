@@ -10,6 +10,6 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: grpc
       protocol: TCP
-      name: http
+      name: grpc
   selector:
     {{- include "ledger.selectorLabels" . | nindent 4 }}

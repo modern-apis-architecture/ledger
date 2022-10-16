@@ -6,6 +6,7 @@ import (
 	"github.com/modern-apis-architecture/ledger/internal/api"
 	"github.com/modern-apis-architecture/ledger/internal/domain/transaction"
 	"github.com/modern-apis-architecture/ledger/internal/domain/transaction/service"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"time"
@@ -22,6 +23,7 @@ func NewLedgerServer(svc *service.TransactionService) *LedgerServer {
 
 func (ls *LedgerServer) Confirmation(ctx context.Context, rc *api.RequestConfirmation) (*api.TransactionResponse, error) {
 	id, _ := uuid.NewUUID()
+	log.Infof("register id %s", id.String())
 	t := &transaction.Transaction{
 		Id:           id.String(),
 		LocalTime:    time.Now(),
@@ -39,7 +41,7 @@ func (ls *LedgerServer) Confirmation(ctx context.Context, rc *api.RequestConfirm
 	}
 	tr, err := ls.svc.Confirmation(t)
 	if err != nil {
-		return nil, status.Errorf(codes.Unimplemented, "method Confirmation not implemented")
+		return nil, status.Errorf(codes.Canceled, "error to persist in database")
 	}
 	rsp := &api.TransactionResponse{
 		RegisterId: tr.Id,
